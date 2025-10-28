@@ -9,7 +9,7 @@ def home_page(request, post_slug=None):
     if post_slug:
         post = get_object_or_404(Post, slug=post_slug)
     
-    return render(request, 'main/base.html', {'posts': post, 'categories': categories})
+    return render(request, 'main/base.html', {'posts': posts, 'categories': categories})
 
 
 def post_detail(request, post_slug):

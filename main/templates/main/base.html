@@ -4,14 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}Главная страница{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
 </head>
 <body>
+    <header>
+        <div class="wrap-logo">
+        <a href="#logo" class="logo">Логотип сайта</a>
+        </div>
+    <nav>
+        <a href="{% url 'main:home_page' %}">Главная</a>
+        <a href="#contact">Контакты</a>
+        <a href="#about">О нас</a>
+    </nav>
+</header>
+<div class="content">
     {%block content%} 
-    base
+    <h1>Рецепты для прекрасной жизни</h1>
     {% for post in posts %}
-    <a href="{% url 'main:post_detail' post.slug %}">posts</a>
+        <a href="{% url 'main:post_detail' post.slug %}"> {{ post.title }} </a><br>
     {% endfor %}
     {% endblock %}
+</div>
 </body>
 </html>

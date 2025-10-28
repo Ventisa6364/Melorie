@@ -9,8 +9,8 @@ class RecipeAdmin(admin.ModelAdmin):
     
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'published_at')
+    list_display = ('title', 'author', )
     search_fields = ('title', 'author', 'recipe_ingredients')
-    list_filter = ('published_at', 'author')
+    list_filter = ('title', 'published_at', 'author')
     prepopulated_fields = {'slug': ('title',)}
 

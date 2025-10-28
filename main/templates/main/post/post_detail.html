@@ -5,5 +5,8 @@
 {% block content %}
  {{post.title}}<br>
  {{post.recipe_ingredients}}<br>
- {{post.recipe_instructions}}
+ {{post.recipe_instructions}}<br>
+ {% if post.image %}
+ <p><img src="{{ post.image.url }}" alt="{{ post.title }}"></p>
+ {% endif %}
 {% endblock %}
