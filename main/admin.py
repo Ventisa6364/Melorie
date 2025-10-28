@@ -5,7 +5,7 @@ from .models import Recipe, Post
 class RecipeAdmin(admin.ModelAdmin):
     list_display = ('title', 'category')
     search_fields = ('title', 'description', 'ingredients')
-    list_filter = ('category',)
+    list_filter = ('title',)
     
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):

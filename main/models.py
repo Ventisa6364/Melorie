@@ -12,8 +12,7 @@ class Recipe(models.Model):
             ('DS', 'Десерт'),
             ('SN', 'Закуска'),
             ('DR', 'Напиток'),
-        ],
-        
+        ],  
     )
     ingredients = models.TextField()
     instructions = models.TextField()

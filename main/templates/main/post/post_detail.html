@@ -1,0 +1,9 @@
+{% extends "main/base.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+ {{post.title}}<br>
+ {{post.recipe_ingredients}}<br>
+ {{post.recipe_instructions}}
+{% endblock %}
