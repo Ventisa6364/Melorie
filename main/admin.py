@@ -14,3 +14,5 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ('title', 'published_at', 'author')
     prepopulated_fields = {'slug': ('title',)}
 
+
+
