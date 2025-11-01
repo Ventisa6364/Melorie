@@ -3,6 +3,7 @@
 body { 
   margin: 0;
   font-family: Arial, sans-serif;
+  background-color: #b2c5b2;
 }
 
 header {
@@ -11,7 +12,7 @@ header {
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
-  background-color: #742e10;
+  background-color: #6b8e4e;
   padding: 10px 10px;
 }
 
@@ -22,7 +23,7 @@ header {
 }
 
 header a {
-  color: #f3d18d;
+  color: #3c5148;
   padding: 10px;
   text-decoration: none;
   font-size: 18px; 
@@ -35,7 +36,7 @@ header a.logo {
 }
 
 header a:hover {
-  color: #fae1b8;
+  color: #d5dddf;
 }
 
 nav {
@@ -48,17 +49,16 @@ nav {
 }
 
 .image_conteiner {
-  width: 200px;
-  height: 200px;
-  height: auto;
-  border-radius: 8px;
-  margin-top: 10px;
-  overflow: hidden;
-}
+    width: 500px;   
+    height: 500px;         
+    aspect-ratio: 1 / 1;    
+    overflow: hidden;
+  }
 
 .image_conteiner img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
+    height: 100%;
+    object-fit: cover;       
+    object-position: center;
+    display: block;
 }

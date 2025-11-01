@@ -10,5 +10,4 @@ def home_page(request):
 
 def post_detail(request, post_slug):
     post = get_object_or_404(Post, slug=post_slug)
-    image_class = "image_class"
     return render(request, 'main/post/post_detail.html', {'post': post,})
