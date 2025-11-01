@@ -19,10 +19,13 @@
     <div class="content">
       {%block content%}
       <h1>Рецепты для прекрасной жизни</h1>
+      <div class="post_list">
       {% for post in posts %}
       <a href="{% url 'main:post_detail' post.slug %}"> {{ post.title }} </a>
       <br />
-      {% endfor %} {% endblock %}
+      {% endfor %}
+      </div>
+      {% endblock %}
     </div>
   </body>
 </html>
