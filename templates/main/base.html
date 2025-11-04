@@ -1,31 +1,66 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Главная страница{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css'%}" />
-  </head>
-  <body>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+
+<body>
     <header>
-      <div class="wrap-logo">
-        <a href="#logo" class="logo">Логотип сайта</a>
-      </div>
-      <nav>
-        <a href="{% url 'main:home_page' %}">Главная</a>
-      </nav>
+        <div class="wrap-logo">
+            <a href="#logo" class="logo">Логотип сайта</a>
+        </div>
+
+        <nav>
+            <a href="{% url 'main:home_page' %}">Главная</a>
+        </nav>
     </header>
+
     <div class="content">
-      {%block content%}
-      <h1>Рецепты для прекрасной жизни</h1>
-      <div class="post_list">
-      {% for post in posts %}
-      <a href="{% url 'main:post_detail' post.slug %}"> {{ post.title }} </a>
-      <br />
-      {% endfor %}
-      </div>
-      {% endblock %}
+        {% block content %}
+
+        <h1 style="margin-bottom: 30px; color: #213b36;">
+            Рецепты для прекрасной жизни
+        </h1>
+
+        {% for post in posts %}
+            <div class="post_detail">
+              <div class="post_flexbox">
+
+                <div class="left">
+                    <div class="image_container_base">
+                        {% if post.image %}
+                            <img src="{{ post.image.url }}" alt="{{ post.title }}" />
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="right">
+                    <div class="name_post">
+                        <p><a href="{% url 'main:post_detail' post.slug %}">
+                            {{ post.title }}
+                        </a></p>
+                    </div>
+
+                    <div class="content_post">
+                        <p>{{ post.recipe_instructions|truncatechars:100 }}</p>
+                    </div>
+                </div>
+                </div>
+                <p class="post_info">
+                    Опубликовано: {{ post.published_at }} <br>
+                    Автор: {{ post.author }}
+                </p>
+                
+
+            </div>
+        {% endfor %}
+
+        {% endblock %}
     </div>
-  </body>
+</body>
 </html>
