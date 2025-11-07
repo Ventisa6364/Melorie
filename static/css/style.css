@@ -126,3 +126,18 @@ nav {
   height: 100%;
   display: block;
 }
+
+
+.email_form {
+    margin-bottom: 10px;
+}
+
+
+.username_forms {
+    margin-bottom: 10px;
+}
+
+
+.password_form {
+  color:aqua;
+}

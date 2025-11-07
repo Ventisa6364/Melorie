@@ -12,11 +12,13 @@
 <body>
     <header>
         <div class="wrap-logo">
-            <a href="#logo" class="logo">Логотип сайта</a>
+            <a href="{% url 'main:home_page' %}" class="logo">Главная</a>
         </div>
 
         <nav>
-            <a href="{% url 'main:home_page' %}">Главная</a>
+            {% if user.is_staff %}
+                <a href="{% url 'admin:index' %}">Админка</a>
+            {% endif %}
         </nav>
     </header>
 
@@ -28,6 +30,7 @@
         </h1>
 
         {% for post in posts %}
+        <a href="{% url 'main:post_detail' post.slug %}">
             <div class="post_detail">
               <div class="post_flexbox">
 
@@ -41,9 +44,9 @@
 
                 <div class="right">
                     <div class="name_post">
-                        <p><a href="{% url 'main:post_detail' post.slug %}">
+                        <p>
                             {{ post.title }}
-                        </a></p>
+                        </p>
                     </div>
 
                     <div class="content_post">
@@ -55,9 +58,8 @@
                     Опубликовано: {{ post.published_at }} <br>
                     Автор: {{ post.author }}
                 </p>
-                
-
             </div>
+        </a>
         {% endfor %}
 
         {% endblock %}
