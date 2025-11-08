@@ -72,7 +72,7 @@ class CustomProfileAuthenticationForm(AuthenticationForm):
     email = forms.CharField(
         required=True,
         widget=forms.TextInput(
-            attrs={"class": "email_forms", "placeholder": "Email"}
+            attrs={"class": "email_form", "placeholder": "Email"}
         ),
         label="Электронная почта",
     )

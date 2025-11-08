@@ -135,21 +135,49 @@ nav {
 
 
 .email_form {
-    margin-bottom: 10px;
+    margin: 10px 0px 5px;
 }
 
 
 .username_forms {
-    margin-bottom: 10px;
+    margin: 10px 0px 5px;
 }
 
 
 .password_form {
-  color:aqua;
+  margin: 10px 0px 5px;
+}
+
+
+.btn {
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 .logo-image {
     width: 50px;
     height: 50px;
     margin-right: 10px;
-    }
+}
+
+
+.forms_environment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+}
+
+
+form {
+  background-color: #f2f2f2;
+  /* padding: 20px; */
+  border-radius: 8px;
+  width: 500px;
+}

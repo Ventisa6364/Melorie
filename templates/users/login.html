@@ -1,12 +1,16 @@
+{% extends "main/base.html" %} 
+{% block title %}Логин {% endblock %}
+
 {% block content %}
 
 <div class="container-form">
-  <h2>Login</h2>
+  <h2>Вход</h2>
 
   {% if massages %} {% for massage in massages %}
   <div class="alert">{{ masseges }}</div>
   {% endfor %} {% endif %}
 
+  <div class="forms_environment">
   <form
     id="AuthenticationAccountForm"
     method="POST"
@@ -32,18 +36,19 @@
 
         <div>
             <button type="submit" class="btn">
-            Login
+            Войти
             </button>
         </div>
 
         <div>
-            <p>Don't you have an account? <a href="{% url 'users:register' %}"
+            <p>Еще нет аккаунта? <br> <a href="{% url 'users:register' %}"
                 hx-get="{% url 'users:register' %}"
                 hx-target="#main-content"
                 hx-push-url="true">
-                Register here</a></p>
+                Зарегистрируйтесь тут!</a></p>
         </div>
     </div>
   </form>
+  </div>
 </div>
 {% endblock content %}
