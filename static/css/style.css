@@ -114,6 +114,12 @@ nav {
   flex: 1; 
 }
 
+.post_info {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #E2EFD3;
+}
+
 
 .image_container_base {
     width: 25vw;   
@@ -141,3 +147,9 @@ nav {
 .password_form {
   color:aqua;
 }
+
+.logo-image {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    }

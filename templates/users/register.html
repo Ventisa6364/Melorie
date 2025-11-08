@@ -1,0 +1,63 @@
+{% block content %}
+
+<div class="container-form">
+  <h2>Register</h2>
+
+  {% if massages %} {% for massage in massages %}
+  <div class="alert">{{ masseges }}</div>
+  {% endfor %} {% endif %}
+
+  <form
+    id="createAccountForm"
+    method="POST"
+    hx-post="{% url 'users:register' %}"
+    class="form-create"
+    hx-target="#main-content"
+  >
+    {% csrf_token %}
+    <div class="form-group">
+      <div>
+        {{ form.username }}
+        {% if form.username.errors %}
+        <div class="text-danger">{{ error }}</div>
+        {% endif %}
+      </div>
+
+      <div>
+        {{ form.email }} 
+        {% if form.email.errors %}
+        <div class="text-danger">{{ error }}</div>
+        {% endif %}
+      </div>
+
+      <div>
+        {{ form.password1 }}
+        {% if form.password1.errors %}
+        <div class="text-danger">{{ error }}</div>
+        {% endif %}
+      </div>
+
+      <div>
+        {{ form.password2}} 
+        {% if form.password2.errors %}
+        <div class="text-danger">{{ error }}</div>
+        {% endif %}
+      </div>
+
+        <div>
+            <button type="submit" class="btn">
+            Register
+            </button>
+        </div>
+
+        <div>
+            <p>Already have an account? <a href="{% url 'users:login' %}"
+                hx-get="{% url 'users:login' %}"
+                hx-target="#main-content"
+                hx-push-url="true">Login
+            here</a></p>
+        </div>
+    </div>
+  </form>
+</div>
+{% endblock content %}

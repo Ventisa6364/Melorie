@@ -9,6 +9,6 @@ urlpatterns = [
     path('profile/', views.profile_view, name='profile'),
     path('account-details/', views.account_details, name='account_details'),
     path('account-edit/', views.edit_account_details, name='edit_account_details'),
-    path('update-account-details/', views.updete_account_details, name='update_account_details'),
+    path('update-account-details/', views.update_account_details, name='update_account_details'),
     path('logout/', views.logout_view, name='logout'),
 ]

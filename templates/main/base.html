@@ -7,11 +7,14 @@
     <title>{% block title %}Главная страница{% endblock %}</title>
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
 </head>
 
 <body>
     <header>
         <div class="wrap-logo">
+            <img src="{% static 'images/logo.jpg' %}" alt="Logo" class="logo-image">
             <a href="{% url 'main:home_page' %}" class="logo">Главная</a>
         </div>
 
@@ -55,7 +58,7 @@
                 </div>
                 </div>
                 <p class="post_info">
-                    Опубликовано: {{ post.published_at }} <br>
+                    Опубликовано: {{ post.published_at }} |
                     Автор: {{ post.author }}
                 </p>
             </div>

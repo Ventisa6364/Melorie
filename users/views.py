@@ -31,7 +31,7 @@ def login_view(request):
       return redirect('main:home_page')
   else:
     form = CustomProfileAuthenticationForm()
-    return TemplateResponse(request, 'users/login.html', {'form': form})
+  return TemplateResponse(request, 'users/login.html', {'form': form})
   
 
 @login_required(login_url='/users/login')

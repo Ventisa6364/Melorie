@@ -69,10 +69,10 @@ class CustomProfileCreationForm(UserCreationForm):
         
 
 class CustomProfileAuthenticationForm(AuthenticationForm):
-    username = forms.CharField(
+    email = forms.CharField(
         required=True,
         widget=forms.TextInput(
-            attrs={"class": "username_forms", "placeholder": "Email"}
+            attrs={"class": "email_forms", "placeholder": "Email"}
         ),
         label="Электронная почта",
     )
