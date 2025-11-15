@@ -33,7 +33,7 @@ class Profile(AbstractUser):
     )
     id = models.AutoField(primary_key=True)
 
-    user = CastomUserManager()
+    objects = CastomUserManager()
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = [

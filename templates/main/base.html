@@ -22,6 +22,7 @@
             {% if user.is_staff %}
                 <a href="{% url 'admin:index' %}">Админка</a>
             {% endif %}
+            <a href="{% url 'users:profile' %}">Профиль</a>
         </nav>
     </header>
 
@@ -33,7 +34,7 @@
         </h1>
 
         {% for post in posts %}
-        <a href="{% url 'main:post_detail' post.slug %}">
+        <a href="{% url 'main:post_detail' post.slug %}" style="text-decoration: none;">
             <div class="post_detail">
               <div class="post_flexbox">
 
@@ -58,12 +59,13 @@
                 </div>
                 </div>
                 <p class="post_info">
-                    Опубликовано: {{ post.published_at }} |
-                    Автор: {{ post.author }}
+                    Опубликовано: {{ post.published_at }} | Автор: {{ post.author }} <br>
+                    Лайки: {{ post.total_likes_post }} | Сохранения: {{ post.total_saves_post }}
                 </p>
             </div>
         </a>
         {% endfor %}
+        <a href="{% url 'main:post_create' %}" class="fixed-link">+</a>
 
         {% endblock %}
     </div>

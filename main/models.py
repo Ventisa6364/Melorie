@@ -39,6 +39,14 @@ class Post(Recipe):
     slug = models.SlugField(unique=True, max_length=100)
     image = models.ImageField(upload_to="posts/%Y/%m/%d", blank=True)
     updated_at = models.DateTimeField(auto_now=True)
+    likes = models.ManyToManyField('users.Profile', related_name='liked_posts', blank=True)
+    saves = models.ManyToManyField('users.Profile', related_name='saved_posts', blank=True)
+
+    def total_likes_post(self):
+        return self.likes.count()
+    
+    def total_saves_post(self):
+        return self.saves.count()
 
     def __str__(self):
         return f"{self.title} by {self.author}"

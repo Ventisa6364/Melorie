@@ -14,4 +14,27 @@
     {% endif %}
   </div>
 
+  <form action="{% url 'main:like_post' post_slug=post.slug %}" method="POST">
+    {% csrf_token %}
+
+    {% if user in post.likes.all %}
+        <button type="submit">❤️ Unlike</button>
+    {% else %}
+        <button type="submit">🤍 Like</button>
+    {% endif %}
+</form>
+
+<form action="{% url 'main:save_post' post_slug=post.slug %}" method="POST">
+    {% csrf_token %}
+
+    {% if user in post.saves.all %}
+        <button type="submit">💾 Unsave</button>
+    {% else %}
+        <button type="submit">💾 Save</button>
+    {% endif %}
+
+</form>
+
+<p>Лайки: {{ post.total_likes_post }} | Сохранения: {{ post.total_saves_post }}</p>
+
 {% endblock %}

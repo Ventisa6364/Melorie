@@ -21,7 +21,7 @@ class CustomProfileCreationForm(UserCreationForm):
         required=True,
         max_length=150,
         widget=forms.TextInput(
-            attrs={"class": "username_forms", "placeholder": "Имя пользователя"}
+            attrs={"class": "username_form", "placeholder": "Имя пользователя"}
         ),
         label="Имя пользователя",
         validators=[
@@ -111,7 +111,7 @@ class CustomProfileUptadeForm(forms.ModelForm):
     username = forms.CharField(
         required=True,
         max_length=150,
-        widget=forms.TextInput(attrs={"class": "username_forms", "placeholder": "Имя пользователя" }),
+        widget=forms.TextInput(attrs={"class": "username_form", "placeholder": "Имя пользователя" }),
         label="Имя пользователя",
     )
 
@@ -124,13 +124,4 @@ class CustomProfileUptadeForm(forms.ModelForm):
         if email and Profile.objects.filter(email=email).exclude(id=self.instance.id).exists():
             raise forms.ValidationError("Этот email уже зарегистрирован.")
         return email
-    
-
-    def clean(self):
-        cleaned_data = super().clean()
-        if not cleaned_data.get("email"):
-            cleaned_data["email"] = self.instance.email
-        if cleaned_data.get("username"):
-            cleaned_data["username"] = self.instance.username
-        return cleaned_data
               

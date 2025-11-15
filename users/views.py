@@ -45,9 +45,12 @@ def profile_view(request):
       return redirect(reverse('users:profile'))
   else:
     form = CustomProfileUptadeForm(instance=request.user)
-    profile = Profile.objects.get(user=request.user)
-    posts = Post.objects.filter(author=request.user).order_by('-created_at')
-    return TemplateResponse(request, 'users/profile.html', {'form': form, 'profile': profile, 'posts': posts})
+    profile = Profile.objects.get(id=request.user.id)
+    posts = Post.objects.filter(author=request.user.username).order_by('-published_at')
+    posts_saved = request.user.saved_posts.all()
+
+
+    return TemplateResponse(request, 'users/profile.html', {'form': form, 'profile': profile, 'posts': posts, 'posts_saved': posts_saved})
   
   recomended_posts = Post.objects.order_by('-created_at')[:5]
 
@@ -60,9 +63,19 @@ def account_details(request):
 
 @login_required(login_url='/users/login')
 def edit_account_details(request):
-  form = CustomProfileUptadeForm(request.POST, instance=request.user)
-  return TemplateResponse(request, 'users/partials/edit_account_details.html', 
-                          {'profile': request.user,'form': form})
+    if request.method == "POST":
+        form = CustomProfileUptadeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('users:profile')
+    else:
+        form = CustomProfileUptadeForm(instance=request.user)
+
+    return TemplateResponse(
+        request,
+        'users/partials/edit_account_details.html',
+        {'profile': request.user, 'form': form}
+    )
 
 
 def update_account_details(request):
