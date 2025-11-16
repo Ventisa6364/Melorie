@@ -1,11 +1,5 @@
 from django.contrib import admin
-from .models import Recipe, Post
-
-@admin.register(Recipe)
-class RecipeAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category')
-    search_fields = ('title', 'description', 'ingredients')
-    list_filter = ('title',)
+from .models import Post
     
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):

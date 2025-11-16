@@ -5,8 +5,9 @@
 
 
   {{post.title}}<br />
-  {{post.recipe_ingredients}}<br />
-  {{post.recipe_instructions}}<br />
+  <pre>{{post.ingredients}}<br /></pre>
+  <br>
+  <pre>{{post.instructions}}<br /></pre>
 
   <div class="image_container">
     {% if post.image %}

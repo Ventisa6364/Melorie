@@ -1,4 +1,5 @@
 from django.db import models
+from slugify import slugify
 
 
 class Recipe(models.Model):
@@ -22,6 +23,7 @@ class Recipe(models.Model):
         return self.title
 
     class Meta:
+        abstract = True
         ordering = [
             "title",
         ]
@@ -31,10 +33,6 @@ class Recipe(models.Model):
 
 class Post(Recipe):
     author = models.CharField(max_length=50)
-    title = Recipe.title
-    category = Recipe.category
-    recipe_ingredients = Recipe.ingredients
-    recipe_instructions = Recipe.instructions
     published_at = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(unique=True, max_length=100)
     image = models.ImageField(upload_to="posts/%Y/%m/%d", blank=True)
@@ -50,6 +48,20 @@ class Post(Recipe):
 
     def __str__(self):
         return f"{self.title} by {self.author}"
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.title)
+            slug = base_slug
+            counter = 1
+
+            while Post.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+
+            self.slug = slug
+
+        super().save(*args, **kwargs)
 
     class Meta:
         ordering = [
