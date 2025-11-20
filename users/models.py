@@ -28,28 +28,17 @@ class CastomUserManager(BaseUserManager):
 class Profile(AbstractUser):
     email = models.EmailField(unique=True, verbose_name="Электронная почта")
     username = models.CharField(max_length=150, verbose_name="Имя пользователя")
-    avatar = models.ImageField(
-        upload_to="avatars/%Y/%m/%d", blank=True, null=True, verbose_name="Аватар"
-    )
+    avatar = models.ImageField(upload_to="avatars/%Y/%m/%d", blank=True)
     id = models.AutoField(primary_key=True)
 
     objects = CastomUserManager()
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = [
-        "username",
-    ]
+    REQUIRED_FIELDS = []
 
     def __str__(self):
         return self.email
 
-    def clean(self):
-        for field in [
-            "avatar",
-        ]:
-            value = getattr(self, field)
-            if value:
-                setattr(self, field, strip_tags(value))
 
     class Meta:
         verbose_name = "Профиль"

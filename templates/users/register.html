@@ -3,47 +3,46 @@
 
 {% block content %}
 
-<div class="container-form">
-  <h2>Регистрация</h2>
+<div class="form-container">
+  <h2>Регистрация</h2> 
+  <br><br><br>
 
-  {% if massages %} {% for massage in massages %}
-  <div class="alert">{{ masseges }}</div>
-  {% endfor %} {% endif %}
-<div class="forms_environment">
-  <form
-    id="createAccountForm"
-    method="POST"
-    hx-post="{% url 'users:register' %}"
-    class="form-create"
-    hx-target="#main-content"
-  >
+  <div class="forms_environment">
+  <form method="post" enctype="multipart/form-data" class="post-form">
     {% csrf_token %}
     <div class="form-group">
       <div>
         {{ form.username }}
         {% if form.username.errors %}
-        <div class="text-danger">{{ error }}</div>
+        <div class="text-danger">{{ form.username.errors }}</div>
         {% endif %}
       </div>
 
       <div>
         {{ form.email }} 
         {% if form.email.errors %}
-        <div class="text-danger">{{ error }}</div>
+        <div class="text-danger">{{ form.email.errors }}</div>
         {% endif %}
       </div>
 
       <div>
         {{ form.password1 }}
         {% if form.password1.errors %}
-        <div class="text-danger">{{ error }}</div>
+        <div class="text-danger">{{ form.password1.errors }}</div>
         {% endif %}
       </div>
 
       <div>
         {{ form.password2}} 
         {% if form.password2.errors %}
-        <div class="text-danger">{{ error }}</div>
+        <div class="text-danger">{{ form.password2.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div>
+        {{ form.avatar }} 
+        {% if form.avatar.errors %}
+        <div class="text-danger">{{ form.avatar.errors }}</div>
         {% endif %}
       </div>
 

@@ -6,32 +6,31 @@
 <div class="container-form">
   <h2>Вход</h2>
 
-  {% if massages %} {% for massage in massages %}
-  <div class="alert">{{ masseges }}</div>
-  {% endfor %} {% endif %}
+  {% if messages %}
+  {% for message in messages %}
+    <div class="alert">{{ message }}</div>
+  {% endfor %}
+{% endif %}
 
   <div class="forms_environment">
   <form
-    id="AuthenticationAccountForm"
     method="POST"
-    hx-post="{% url 'users:login' %}"
     class="form-login"
-    hx-target="#main-content"
   >
     {% csrf_token %}
     <div class="form-group">
       <div>
-        {{ form.email }}
-        {% if form.email.errors %}
+        {{ form.username }}
+        {% for error in form.username.errors %}
         <div class="text-danger">{{ error }}</div>
-        {% endif %}
+    {% endfor %}
       </div>
 
       <div>
         {{ form.password}}
-        {% if form.password.errors %}
+        {% for error in form.password.errors %}
         <div class="text-danger">{{ error }}</div>
-        {% endif %}
+    {% endfor %}
       </div>
 
         <div>

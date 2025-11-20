@@ -11,27 +11,28 @@ from main.models import Post
 
 
 def register(request):
-  if request.method == 'POST':
-    form = CustomProfileCreationForm(request.POST)
-    if form.is_valid():
-      user = form.save()
-      login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-      return redirect('main:home_page')  
-  else:
-    form = CustomProfileCreationForm()
-    return TemplateResponse(request, 'users/register.html', {'form': form})
+  form = CustomProfileCreationForm(request.POST, request.FILES)
+  if request.method == "POST":
+      if form.is_valid():
+        user = form.save()
+        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+        return redirect('users:profile')  
+  return render(request, 'users/register.html', {'form': form})
   
 
 def login_view(request):
+  form = CustomProfileAuthenticationForm(request, data=request.POST or None)
+
+
   if request.method == 'POST':
-    form = CustomProfileAuthenticationForm(request, data=request.POST)
-    if form.is_valid():
-      user = form.get_user()
-      login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-      return redirect('main:home_page')
-  else:
-    form = CustomProfileAuthenticationForm()
-  return TemplateResponse(request, 'users/login.html', {'form': form})
+      if form.is_valid():
+          user = form.get_user()
+          login(request, user)
+          return redirect('main:home_page')
+      else:
+          messages.error(request, 'Неверные данные')
+
+  return render(request, 'users/login.html', {'form': form})
   
 
 @login_required(login_url='/users/login')

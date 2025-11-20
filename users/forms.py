@@ -6,8 +6,7 @@ from django.contrib.auth.forms import (
 from django.contrib.auth import get_user_model, authenticate
 from django.utils.html import strip_tags
 from django.core.validators import RegexValidator
-
-Profile = get_user_model()
+from .models import Profile
 
 
 class CustomProfileCreationForm(UserCreationForm):
@@ -46,9 +45,15 @@ class CustomProfileCreationForm(UserCreationForm):
         label="Подтверждение пароля",
     )
 
+    avatar = forms.ImageField(
+        required=False,
+        widget=forms.ClearableFileInput(attrs={"class": "avatar_form"}),
+        label="Аватар",
+    )
+
     class Meta:
         model = Profile
-        fields = ("email", "username", "password1", "password2")
+        fields = ("email", "username", "password1", "password2", "avatar")
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
@@ -58,7 +63,7 @@ class CustomProfileCreationForm(UserCreationForm):
 
     def clean_username(self):
         username = self.cleaned_data.get("username")
-        if Profile.objects.filter(email=username).exists():
+        if Profile.objects.filter(username=username).exists():
             raise forms.ValidationError("Такой username уже существует.")
         return username
     
@@ -68,13 +73,13 @@ class CustomProfileCreationForm(UserCreationForm):
         
 
 class CustomProfileAuthenticationForm(AuthenticationForm):
-    email = forms.CharField(
+    username = forms.CharField(
         required=True,
         widget=forms.TextInput(
-            attrs={"class": "email_form", "placeholder": "Email"}
-        ),
-        label="Электронная почта",
+            attrs={"class": "username_form", "placeholder": "Имя пользователя"}),
+        label="Имя пользователя",
     )
+    
     password = forms.CharField(
         required=True,
         widget=forms.PasswordInput(
@@ -85,14 +90,14 @@ class CustomProfileAuthenticationForm(AuthenticationForm):
 
 
     def clean(self):
-        email = self.cleaned_data.get("username")
+        username = self.cleaned_data.get("username")
         password = self.cleaned_data.get("password")
 
-        if email and password:
-            self.user_cache = authenticate(self.request, email=email, password=password)
+        if username and password:
+            self.user_cache = authenticate(self.request, username=username, password=password)
             if self.user_cache is None:
                 raise forms.ValidationError(
-                    "Пожалуйста, введите правильный email и пароль."
+                    "Пожалуйста, введите правильный username и пароль."
                 )
             elif not self.user_cache.is_active:
                 raise forms.ValidationError("Этот аккаунт не активен.")
