@@ -21,9 +21,9 @@ def post_create(request):
     form = PostForm(request.POST or None, request.FILES or None)
     if request.method == "POST":
         if form.is_valid():
-            new_post = form.save(commit=False)
-            new_post.author = request.user.username
-            new_post.save()
+            post = form.save(commit=False)
+            post.author = request.user 
+            post.save()
             return redirect('main:home_page')
     return render(request, 'main/post/post_create.html', {'form': form,})
 

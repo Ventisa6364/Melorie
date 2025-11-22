@@ -1,5 +1,6 @@
 from django.db import models
 from slugify import slugify
+from django.conf import settings
 
 
 class Recipe(models.Model):
@@ -32,7 +33,11 @@ class Recipe(models.Model):
 
 
 class Post(Recipe):
-    author = models.CharField(max_length=50)
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='posts'
+    )
     published_at = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(unique=True, max_length=100)
     image = models.ImageField(upload_to="posts/%Y/%m/%d", blank=True)

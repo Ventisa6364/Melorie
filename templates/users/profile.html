@@ -9,7 +9,7 @@
 
   <div class="post_detail">
     <div class="profile-image">
-        <img src="{% if user.avatar %}{{ user.avatar }}{% else %}{% static 'images/default_profile.png' %}{% endif %}"
+        <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'images/default_profile.png' %}{% endif %}"
      alt="Profile Image"
      class="img-profile">
     </div>

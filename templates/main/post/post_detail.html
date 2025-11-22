@@ -1,13 +1,19 @@
 {% extends "main/base.html" %} 
+{% load static %}
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
 
 
-  {{post.title}}<br />
+  <div class="post_detail_title">
+    {{post.title}}<br />
+</div>
+<div class="post_detail_ingredients">
   <pre>{{post.ingredients}}<br /></pre>
-  <br>
+</div>
+<div class="post_detail_instructions">
   <pre>{{post.instructions}}<br /></pre>
+</div>
 
   <div class="image_container">
     {% if post.image %}
@@ -15,27 +21,36 @@
     {% endif %}
   </div>
 
-  <form action="{% url 'main:like_post' post_slug=post.slug %}" method="POST">
+  <div class="like_save_form">
+  <form action="{% url 'main:like_post' post_slug=post.slug %}" method="POST" class="like_form">
     {% csrf_token %}
 
     {% if user in post.likes.all %}
-        <button type="submit">❤️ Unlike</button>
+        <button type="submit" class="like">❤️ Unlike</button>
     {% else %}
-        <button type="submit">🤍 Like</button>
+        <button type="submit" class="like">🤍 Like</button>
     {% endif %}
 </form>
 
-<form action="{% url 'main:save_post' post_slug=post.slug %}" method="POST">
+<form action="{% url 'main:save_post' post_slug=post.slug %}" method="POST" class="save_form">
     {% csrf_token %}
 
     {% if user in post.saves.all %}
-        <button type="submit">💾 Unsave</button>
+        <button type="submit" class="save">💾 Unsave</button>
     {% else %}
-        <button type="submit">💾 Save</button>
+        <button type="submit" class="save">💾 Save</button>
     {% endif %}
-
 </form>
+</div>
 
+<div>
+    <div>
+        {{ post.author.username }}
+        <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'images/default_profile.png' %}{% endif %}">
+    </div>
+<div class="like_save_count">
 <p>Лайки: {{ post.total_likes_post }} | Сохранения: {{ post.total_saves_post }}</p>
+</div>
+</div>
 
 {% endblock %}

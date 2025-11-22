@@ -37,6 +37,7 @@ class CustomProfileCreationForm(UserCreationForm):
         ),
         label="Пароль",
     )
+
     password2 = forms.CharField(
         required=True,
         widget=forms.PasswordInput(
@@ -47,7 +48,7 @@ class CustomProfileCreationForm(UserCreationForm):
 
     avatar = forms.ImageField(
         required=False,
-        widget=forms.ClearableFileInput(attrs={"class": "avatar_form"}),
+        widget=forms.ClearableFileInput(attrs={"class": "avatar_form", "placeholder": "Аватар"}),
         label="Аватар",
     )
 
@@ -73,11 +74,11 @@ class CustomProfileCreationForm(UserCreationForm):
         
 
 class CustomProfileAuthenticationForm(AuthenticationForm):
-    username = forms.CharField(
+    email = forms.CharField(
         required=True,
         widget=forms.TextInput(
-            attrs={"class": "username_form", "placeholder": "Имя пользователя"}),
-        label="Имя пользователя",
+            attrs={"class": "email_form", "placeholder": "Электронная почта"}),
+        label="Электронная почта",
     )
     
     password = forms.CharField(

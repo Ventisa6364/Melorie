@@ -11,18 +11,21 @@ from main.models import Post
 
 
 def register(request):
-  form = CustomProfileCreationForm(request.POST, request.FILES)
+  form = CustomProfileCreationForm(request.POST or None, request.FILES or None)
+
   if request.method == "POST":
       if form.is_valid():
         user = form.save()
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-        return redirect('users:profile')  
+        return redirect('users:profile') 
+      else:
+        messages.error(request, 'Неверные данные') 
+        
   return render(request, 'users/register.html', {'form': form})
   
 
 def login_view(request):
   form = CustomProfileAuthenticationForm(request, data=request.POST or None)
-
 
   if request.method == 'POST':
       if form.is_valid():
@@ -47,7 +50,7 @@ def profile_view(request):
   else:
     form = CustomProfileUptadeForm(instance=request.user)
     profile = Profile.objects.get(id=request.user.id)
-    posts = Post.objects.filter(author=request.user.username).order_by('-published_at')
+    posts = Post.objects.filter(author=request.user).order_by('-published_at')
     posts_saved = request.user.saved_posts.all()
 
 
