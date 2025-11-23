@@ -44,13 +44,25 @@
 </div>
 
 <div>
-    <div>
-        {{ post.author.username }}
-        <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'images/default_profile.png' %}{% endif %}">
-    </div>
-<div class="like_save_count">
-<p>Лайки: {{ post.total_likes_post }} | Сохранения: {{ post.total_saves_post }}</p>
+  <div>
+    {{ post.author.username }}
+    <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'images/default_profile.png' %}{% endif %}">
+  </div>
+
+  <div class="like_save_count">
+    <p>Лайки: {{ post.total_likes_post }} | Сохранения: {{ post.total_saves_post }}</p>
+  </div>
+
 </div>
+
+<div>
+  <h3>Похожие рецепты:</h3>
+
+  <ul>
+    {% for r in recommendations %}
+      <li><a href="{% url 'main:post_detail' post.slug %}">{{ r.title }}</a></li>
+    {% endfor %}
+  </ul>
 </div>
 
 {% endblock %}

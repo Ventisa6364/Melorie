@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post, Category
 
 class PostForm(forms.ModelForm):
     title = forms.CharField(
@@ -12,17 +12,12 @@ class PostForm(forms.ModelForm):
         widget=forms.Textarea(attrs={"class": "description_form", "placeholder": "Опишите рецепт здесь..."}),
         label="Описание рецепта",
     )
-    category = forms.ChoiceField(
-        choices=[
-            ("BK", "Завтрак"),
-            ("LN", "Обед"),
-            ("DN", "Ужин"),
-            ("DS", "Десерт"),
-            ("SN", "Закуска"),
-            ("DR", "Напиток"),
-        ],
-        label="Категория",
+    category = forms.ModelChoiceField(
+        queryset=Category.objects.all(),
         widget=forms.Select(attrs={"class": "category_form"}),
+        label="Категория",
+        required=True,
+        empty_label=None,
     )
     ingredients = forms.CharField(
         required=True,

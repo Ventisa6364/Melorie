@@ -3,10 +3,8 @@ from slugify import slugify
 from django.conf import settings
 
 
-class Recipe(models.Model):
-    title = models.CharField(max_length=100)
-    description = models.TextField()
-    category = models.CharField(
+class Category(models.Model):
+    name = models.CharField(
         max_length=10,
         choices=[
             ("BK", "Завтрак"),
@@ -17,6 +15,15 @@ class Recipe(models.Model):
             ("DR", "Напиток"),
         ],
     )
+
+    def __str__(self):
+        return self.get_name_display()
+
+
+class Recipe(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null = True)
     ingredients = models.TextField()
     instructions = models.TextField()
 
@@ -32,7 +39,12 @@ class Recipe(models.Model):
         verbose_name_plural = "Рецепты"
 
 
-class Post(Recipe):
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null = True)
+    ingredients = models.TextField()
+    instructions = models.TextField()
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
