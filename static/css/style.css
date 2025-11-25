@@ -1,118 +1,150 @@
-* {box-sizing: border-box;}
+/* ============================
+   Base Styles
+============================ */
 
-body { 
-  margin: 0;
-  font-family: "Arial", "Helvetica", sans-serif;
-  background-color: #7A8F55;
+* {
+    box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+    font-family: "Arial", "Helvetica", sans-serif;
+    background-color: #7A8F55;
+}
 
 h1 {
     margin-top: 0;
 }
 
-
-header {
-  padding-left: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  background-color: #2F4F3E;
-  padding: 10px 10px;
-  margin-bottom: 0px;
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
-.wrap-logo {
-  display: flex;
-  align-items: center;
- 
+/* ============================
+   Typography helpers
+============================ */
+
+a {
+    text-decoration: none;
+}
+
+/* ============================
+   Header
+============================ */
+
+header {
+    z-index: 1000;
+    top: 0px;
+    left: 0px;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    flex-wrap: wrap;
+    padding: 10px;
+    padding-left: 0;
+    margin-bottom: 0;
+    background-color: #2F4F3E;
+}
+
+.wrap-logo,
+nav {
+    display: flex;
+    align-items: center;
 }
 
 header a {
-  color: #C67141;
-  padding: 10px;
-  text-decoration: none;
-  font-size: 18px; 
-  border-radius: 4px;
+    padding: 10px;
+    font-size: 18px;
+    color: #C67141;
+    border-radius: 4px;
 }
 
 header a.logo {
-  font-size: 25px;
-  font-weight: bold;
+    font-size: 25px;
+    font-weight: bold;
 }
 
 header a:hover {
-  color: #D13F2A;
+    color: #D13F2A;
 }
 
-nav {
-  display: flex;
-  align-items: center;
-}
+/* ============================
+   Main content
+============================ */
 
 .content {
-  width: 75vw;
-  margin: 0 auto;
-  padding: 20px 20px 50px 20px;
-  background-color: #F4EEDB;
-  text-align: center;
-  border-radius: 0 0 12px 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-  font-family: "Arial", "Helvetica", sans-serif;
+    width: 75vw;
+    margin: 70px auto;
+    padding: 20px 20px 50px;
+    text-align: center;
+    background-color: #F4EEDB;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
+/* ============================
+   Image Containers
+============================ */
+
+.image_container,
+.image_container_base {
+    margin: 0 auto;
+    overflow: hidden;
+}
 
 .image_container {
-    width: 500px;   
-    height: auto;   
-    margin: 0 auto;          
-    overflow: hidden;
-  }
-
-
-.image_container img {
-  width: 100%;
-    object-fit: cover;       
-    object-position: center;
-    display: block;
-    
+    width: 500px;
 }
 
+.image_container_base {
+    width: 25vw;
+    margin-top: 10px;
+    border-radius: 12px;
+}
+
+.image_container img,
+.image_container_base img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* ============================
+   Post Details
+============================ */
 
 .post_detail {
     width: 60vw;
     margin: 20px auto;
     padding: 20px;
-    border-radius: 15px;
     font-size: 20px;
-    background-color: #2F4F3E;
-    text-align: left;
     color: #F4EEDB;
+    text-align: left;
+    border-radius: 15px;
+    background-color: #2F4F3E;
 }
 
+.post_detail a {
+    color: #F4EEDB;
+}
 
 .post_flexbox {
     display: flex;
     gap: 20px;
 }
 
-
-.post_detail a{
-     text-decoration: none;
-     color: #F4EEDB;
+.left,
+.right {
+    flex: 1;
 }
 
 .right {
-  display: flex;
-  flex-direction: column; 
-  gap: 0px; 
-  justify-content: space-between;
-  flex: 1; 
-}
-
-.left {
-  flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .post_info {
@@ -121,118 +153,111 @@ nav {
     color: #adb5bd;
 }
 
-
-.image_container_base {
-    width: 25vw;   
-    margin: 10px auto; 
-  }
-
-
-.image_container_base img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  border-radius: 12px;
-}
-
-
-.email_form {
-    margin: 10px 0px 5px;
-}
-
-
-.username_form {
-    margin: 10px 0px 5px;
-}
-
-
-.password_form {
-  margin: 10px 0px 5px;
-}
-
-
-.btn {
-    margin-top: 10px;
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.logo-image {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-}
-
-
-.forms_environment {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40vh;
-}
-
-
-.fixed-link {
-    position: fixed;        
-    bottom: 20px;          
-    right: 20px;            
-    width: 60px;          
-    height: 60px;         
-    background-color: #28a745;
-    color: white;
-    text-decoration: none;
-    border-radius: 50%;   
-    display: flex;        
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    transition: background-color 0.3s;
-  }
-
-  .fixed-link:hover {
-    background-color: #1e7e34;
-  }
-
-
-.profile-image {
+.post_detail_title {
+    font-size: 30px;
+    font-weight: bold;
     text-align: center;
-    margin-bottom: 20px;
 }
 
+.post_detail_ingredients,
+.post_detail_instructions {
+    font-size: 18px;
+    margin: 30px 0;
+}
 
+.post_detail_all {
+    width: 60vw;
+    margin: 20px auto;
+    padding: 20px;
+    font-size: 20px;
+    color: #7C4F32;
+    text-align: left;
+    border-radius: 15px;
+}
+
+.post_detail_all a:visited {
+  text-decoration: none;
+  color: #D9A441;
+}
+
+.info_about_author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    background: #ffffffcc;               
+    backdrop-filter: blur(8px);          
+    border: 1px solid #e3e3e3;
+    
+    padding: 16px 20px;
+    border-radius: 14px;
+    width: fit-content;
+
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);  
+}
+
+.author_img {
+    width: 58px;
+    height: 58px;
+    border-radius: 12px;
+    object-fit: cover;
+
+    border: 2px solid #dcdcdc;          
+}
+
+.name {
+    font-size: 20px;
+    font-weight: 600;
+    color: #4a3c2d;                    
+    letter-spacing: 0.3px;
+}
+
+.post_published_info {
+  text-decoration: none;
+  font-size: 12px;
+}
+
+/* ============================
+   Profile
+============================ */
+
+.profile-image,
 .img-profile {
     text-align: center;
-    margin-top: 10px;
-    width: 25vw;
-    border-radius: 12px;
-  } 
-
-
-  .error {
-  background-color: #ffe6e6;
-  color: #d93025;
-  padding: 10px 12px;
-  border: 1px solid #ffb3b3;
-  border-radius: 6px;
-  margin-top: 8px;
 }
 
+.img-profile {
+    width: 25vw;
+    margin-top: 10px;
+    border-radius: 12px;
+}
+
+/* ============================
+   Forms
+============================ */
+
+.forms_environment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+}
+
+.email_form,
+.username_form,
+.password_form,
+.avatar_form {
+    margin: 10px 0 5px;
+}
 
 .form-wrapper {
-    background: #f4ecd4;
-    padding: 40px 50px;
     max-width: 650px;
     margin: 40px auto;
+    padding: 40px 50px;
+    background: #f4ecd4;
     border-radius: 18px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
-
 
 .form-wrapper h2 {
     text-align: center;
@@ -241,11 +266,9 @@ nav {
     font-weight: 700;
 }
 
-
 .form-group {
     margin-bottom: 25px;
 }
-
 
 .form-group label {
     display: block;
@@ -254,22 +277,19 @@ nav {
     font-size: 16px;
 }
 
-
 .form-group input,
 .form-group textarea,
 .form-group select {
     width: 100%;
     padding: 12px 14px;
     font-size: 15px;
+    background: #fff;
     border: 1px solid #b0a48c;
     border-radius: 10px;
-    background: #fff;
-    box-sizing: border-box;
     outline: none;
     transition: 0.25s;
     font-family: "Arial", "Helvetica", sans-serif;
 }
-
 
 .form-group input:focus,
 .form-group textarea:focus,
@@ -278,66 +298,55 @@ nav {
     box-shadow: 0 0 6px rgba(106,139,79,0.5);
 }
 
-
 .form-group textarea {
     min-height: 120px;
 }
 
-
 .submit-btn {
-    display: block;
     width: 100%;
-    background: #6a8b4f;
-    color: white;
     padding: 14px;
-    border: none;
-    border-radius: 10px;
-    font-size: 17px;
-    cursor: pointer;
     margin-top: 10px;
-    transition: 0.25s;
+    font-size: 17px;
     font-weight: bold;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    background: #6a8b4f;
+    transition: 0.25s;
 }
 
 .submit-btn:hover {
     background: #58763f;
 }
 
-pre {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-}
-
-.post_detail_title {
-    font-size: 30px;
-    font-weight: bold;
-}
-
-.post_detail_ingredients, .post_detail_instructions {
-    font-size: 18px;
-    margin: 30px 0px;
-}
+/* ============================
+   Buttons (like / save)
+============================ */
 
 .like_save_form {
     display: flex;
     gap: 12px;
 }
 
-.like, .save {
+.like,
+.save {
     padding: 8px 14px;
-    border-radius: 8px;
+    font-size: 15px;
     border: none;
     cursor: pointer;
-    font-size: 15px;
+    border-radius: 8px;
     background: #f4f4f4;
     transition: 0.2s;
 }
 
-.like:hover, .save:hover {
+.like:hover,
+.save:hover {
     background: #eaeaea;
 }
 
-.like:active, .save:active {
+.like:active,
+.save:active {
     transform: scale(0.97);
 }
 
@@ -349,4 +358,58 @@ pre {
     color: #2563eb;
 }
 
+/* ============================
+   Utility / Misc
+============================ */
 
+.btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #4CAF50;
+}
+
+.logo-image {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.error {
+    margin-top: 8px;
+    padding: 10px 12px;
+    color: #d93025;
+    background-color: #ffe6e6;
+    border: 1px solid #ffb3b3;
+    border-radius: 6px;
+}
+
+/* ============================
+   Floating Button
+============================ */
+
+.fixed-link {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    color: white;
+    font-size: 24px;
+    border-radius: 50%;
+    text-decoration: none;
+    background-color: #28a745;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.fixed-link:hover {
+    background-color: #1e7e34;
+}

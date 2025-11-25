@@ -65,7 +65,10 @@
             </div>
         </a>
         {% endfor %}
+
+        {%if request.user.is_authenticated%}
         <a href="{% url 'main:post_create' %}" class="fixed-link">+</a>
+        {%endif%}
 
         {% endblock %}
     </div>

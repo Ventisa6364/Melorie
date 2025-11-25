@@ -4,8 +4,15 @@
 
 {% block content %}
 
+<div class="post_detail_all">
+  <div>
+  <div class="info_about_author">
+    <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'images/default_profile.png' %}{% endif %}" class="author_img">
+    <div class="name">{{ post.author.username }}</div>
+  </div>
+</div>
 
-  <div class="post_detail_title">
+<div class="post_detail_title">
     {{post.title}}<br />
 </div>
 <div class="post_detail_ingredients">
@@ -30,6 +37,7 @@
     {% else %}
         <button type="submit" class="like">🤍 Like</button>
     {% endif %}
+    x {{ post.total_likes_post }}
 </form>
 
 <form action="{% url 'main:save_post' post_slug=post.slug %}" method="POST" class="save_form">
@@ -40,19 +48,8 @@
     {% else %}
         <button type="submit" class="save">💾 Save</button>
     {% endif %}
+    x {{ post.total_saves_post }}
 </form>
-</div>
-
-<div>
-  <div>
-    {{ post.author.username }}
-    <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'images/default_profile.png' %}{% endif %}">
-  </div>
-
-  <div class="like_save_count">
-    <p>Лайки: {{ post.total_likes_post }} | Сохранения: {{ post.total_saves_post }}</p>
-  </div>
-
 </div>
 
 <div>
@@ -60,9 +57,10 @@
 
   <ul>
     {% for r in recommendations %}
-      <li><a href="{% url 'main:post_detail' post.slug %}">{{ r.title }}</a></li>
+      <li><a href="{% url 'main:post_detail' r.slug %}">{{ r.title }}</a></li>
     {% endfor %}
   </ul>
+</div>
 </div>
 
 {% endblock %}
