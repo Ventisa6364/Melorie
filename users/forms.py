@@ -74,7 +74,7 @@ class CustomProfileCreationForm(UserCreationForm):
         
 
 class CustomProfileAuthenticationForm(AuthenticationForm):
-    email = forms.CharField(
+    username = forms.CharField(
         required=True,
         widget=forms.TextInput(
             attrs={"class": "email_form", "placeholder": "Электронная почта"}),
