@@ -7,7 +7,7 @@
 <div class="post_detail_all">
   <div>
   <div class="info_about_author">
-    <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'images/default_profile.png' %}{% endif %}" class="author_img">
+    <img src="{% if post.author.avatar %}{{ post.author.avatar.url }}{% else %}{% static 'images/default_profile.png' %}{% endif %}" class="author_img">
     <div class="name">{{ post.author.username }}</div>
   </div>
 </div>

@@ -16,7 +16,7 @@ def post_detail(request, post_slug):
     total_likes = post.total_likes_post()
     total_saves = post.total_saves_post()
     recommendations = get_recomended_posts(post)
-    return render(request, 'main/post/post_detail.html', {'post': post, 'total_likes': total_likes, 'total_saves': total_saves, 'recommendations': recommendations})
+    return render(request, 'main/post/post_detail.html', {'post': post, 'total_likes': total_likes, 'total_saves': total_saves, 'recommendations': recommendations,}) 
 
 
 def post_create(request):
