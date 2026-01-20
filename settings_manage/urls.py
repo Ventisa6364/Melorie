@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-import settings
+import settings_manage.settings as settings
 from django.conf.urls.static import static
 
 urlpatterns = [
