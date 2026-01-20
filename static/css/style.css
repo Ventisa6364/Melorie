@@ -113,27 +113,42 @@ header a:hover {
 }
 
 /* ============================
-   Post Details
+   Post Details (Stylish Version)
 ============================ */
 
 .post_detail {
     width: 60vw;
-    margin: 20px auto;
-    padding: 20px;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 30px 35px;
     font-size: 20px;
     color: #F4EEDB;
     text-align: left;
-    border-radius: 15px;
-    background-color: #2F4F3E;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #2f4f3e, #3e5f4d);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post_detail:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.35);
 }
 
 .post_detail a {
     color: #F4EEDB;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.post_detail a:hover {
+    color: #FFD27F;
 }
 
 .post_flexbox {
     display: flex;
-    gap: 20px;
+    gap: 25px;
+    flex-wrap: wrap;
 }
 
 .left,
@@ -148,74 +163,102 @@ header a:hover {
 }
 
 .post_info {
-    margin-top: 10px;
+    margin-top: 12px;
     font-size: 14px;
-    color: #adb5bd;
+    color: #c0c0c0;
 }
 
 .post_detail_title {
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 32px;
+    font-weight: 700;
     text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    /* color: #FFEABF; */
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
 }
 
 .post_detail_ingredients,
 .post_detail_instructions {
     font-size: 18px;
     margin: 30px 0;
+    line-height: 1.7;
+    padding: 2px 30px;
+    border-radius: 20px;
+    background-color: dce0d9;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 
 .post_detail_all {
     width: 60vw;
-    margin: 20px auto;
-    padding: 20px;
+    max-width: 900px;
+    margin: 25px auto;
+    padding: 25px 30px;
     font-size: 20px;
     color: #7C4F32;
     text-align: left;
-    border-radius: 15px;
 }
 
 .post_detail_all a:visited {
-  text-decoration: none;
-  color: #D9A441;
+    text-decoration: none;
+    color: #D9A441;
+    transition: color 0.2s ease;
+}
+
+.post_detail_all a:hover {
+    color: #b8872f;
 }
 
 .info_about_author {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 18px;
 
-    background: #ffffffcc;               
-    backdrop-filter: blur(8px);          
-    border: 1px solid #e3e3e3;
-    
-    padding: 16px 20px;
-    border-radius: 14px;
-    width: fit-content;
+    background: linear-gradient(135deg, #FDF6F0DD, #E0DED8CC); /* мягкий тёплый градиент */
+    backdrop-filter: blur(10px);
+    border: 1px solid #CFCFCF;
 
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);  
+    padding: 18px 24px;
+    border-radius: 18px;
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.info_about_author:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(135deg, #F7ECE2, #D8D4CDCC);
 }
 
 .author_img {
-    width: 58px;
-    height: 58px;
-    border-radius: 12px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
     object-fit: cover;
+    border: 2px solid #BFBFBF; /* чуть темнее бордюр */
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    background-color: #EAE5DE; /* фон аватара если нет картинки */
+}
 
-    border: 2px solid #dcdcdc;          
+.author_img:hover {
+    transform: scale(1.08);
+    border-color: #AFAFAF;
 }
 
 .name {
-    font-size: 20px;
-    font-weight: 600;
-    color: #4a3c2d;                    
-    letter-spacing: 0.3px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #4A3C33; /* тёплый тёмно-коричневый, чуть насыщеннее */
+    letter-spacing: 0.4px;
 }
 
 .post_published_info {
-  text-decoration: none;
-  font-size: 12px;
+    font-size: 13px;
+    color: #666666; /* чуть темнее серый */
+    margin-top: 4px;
 }
+
 
 /* ============================
    Profile

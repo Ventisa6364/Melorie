@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
@@ -107,6 +107,16 @@ def logout_view(request):
   if request.headers.get('HX-Request'):
     return HttpResponse(headers={'HX-Redirect': reverse('main:home_page')})
   return redirect('main:home_page')
+
+def profile_author_view(request):
+    username = request.GET.get('username')
+    if not username:
+        return render(request, 'users/profile_author.html', {'error': 'Пользователь не указан'})
+
+    user = get_object_or_404(Profile, username=username)
+    posts = Post.objects.filter(author=user).order_by('-published_at')
+
+    return render(request, 'users/profile_author.html', {'user': user, 'posts': posts})
     
 
     

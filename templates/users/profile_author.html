@@ -1,0 +1,27 @@
+{% extends "main/base.html" %} 
+{% load static %}
+{% block title %}Профиль {% endblock %}
+
+{% block content %}
+<div class="container-profile">
+  <h2> Добро пожаловать, {{ user.username }}! </h2>
+
+
+  <div class="post_detail">
+    <div class="profile-image">
+        <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'images/default_profile.png' %}{% endif %}"
+     alt="Profile Image"
+     class="img-profile">
+    </div>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <h4>Опубликованные посты:</h4>
+    {% for post in posts %}
+        <div class="user-post">
+            <h3><a href="{% url 'main:post_detail' post_slug=post.slug %}">{{ post.title }}</a>
+            <span class="post_published_info">(Опубликовано: {{ post.published_at }})</span>
+            </h3>
+        </div>
+        {% empty %}
+        <p>Еще нет опубликованных постов.</p>
+        {% endfor %}
+{% endblock %}
