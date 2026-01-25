@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Главная страница{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+</head>
+
+<body>
+    <header>
+        <div class="wrap-logo">
+            <img src="{% static 'images/logo.jpg' %}" alt="Logo" class="logo-image">
+            <a href="{% url 'posts:home_page' %}" class="logo">Главная</a>
+        </div>
+
+        <nav>
+            {% if user.is_staff %}
+                <a href="{% url 'admin:index' %}">Админка</a>
+            {% endif %}
+            <a href="{% url 'users:profile' %}">Профиль</a>
+        </nav>
+    </header>
+
+    <div class="content">
+        {% block content %}
+
+        <h1 style="margin-bottom: 30px; color: #213b36;">
+            Рецепты для прекрасной жизни
+        </h1>
+
+        {% for post in posts %}
+        <a href="{% url 'posts:post_detail' post.slug %}" style="text-decoration: none;">
+            <div class="post_detail">
+              <div class="post_flexbox">
+
+                <div class="left">
+                    <div class="image_container_base">
+                        {% if post.image %}
+                            <img src="{{ post.image.url }}" alt="{{ post.title }}" />
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="right">
+                    <div class="name_post">
+                        <p>
+                            {{ post.title }}
+                        </p>
+                    </div>
+
+                    <div class="content_post">
+                        <p>{{ post.description|truncatechars:100 }}</p>
+                    </div>
+                </div>
+                </div>
+                <p class="post_info">
+                    Опубликовано: {{ post.published_at }} | Автор: {{ post.author.username }} <br>
+                    Лайки: {{ post.total_likes_post }} | Сохранения: {{ post.total_saves_post }}
+                </p>
+            </div>
+        </a>
+        {% endfor %}
+
+        {%if request.user.is_authenticated%}
+        <a href="{% url 'main:post_create' %}" class="fixed-link">+</a>
+        {%endif%}
+
+        {% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{% extends "posts/base.html" %} 
+{% block title %}Логин {% endblock %}
+
+{% block content %}
+
+<div class="container-form">
+  <h2>Вход</h2>
+
+  {% if messages %}
+  {% for message in messages %}
+    <div class="alert">{{ message }}</div>
+  {% endfor %}
+{% endif %}
+
+  <div class="forms_environment">
+  <form
+    method="POST"
+    class="form-login"
+  >
+    {% csrf_token %}
+    <div class="form-group">
+      <div>
+        {{ form.username }}
+        {% for error in form.username.errors %}
+        <div class="text-danger">{{ error }}</div>
+    {% endfor %}
+      </div>
+
+      <div>
+        {{ form.password}}
+        {% for error in form.password.errors %}
+        <div class="text-danger">{{ error }}</div>
+    {% endfor %}
+      </div>
+
+        <div>
+            <button type="submit" class="btn">
+            Войти
+            </button>
+        </div>
+
+        <div>
+            <p>Еще нет аккаунта? <br> <a href="{% url 'users:register' %}"
+                hx-get="{% url 'users:register' %}"
+                hx-target="#main-content"
+                hx-push-url="true">
+                Зарегистрируйтесь тут!</a></p>
+        </div>
+    </div>
+  </form>
+  </div>
+</div>
+{% endblock content %}

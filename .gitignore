@@ -6,6 +6,5 @@ __pycache__/
 .idea 
 .env
 
-
-media/
-posts/
+presentation/static/
+presentation/media/
